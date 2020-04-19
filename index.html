@@ -25,11 +25,11 @@
 
                      <div class="col-md-5 center-item">
                         <div class="input-group number-spinner">
-                           <button class="btn btn-default"><i class="fas fa-minus"></i></button>
-                           <input type="text" class="form-control text-center" value="1">
-                           <button class="btn btn-default"><i class="fas fa-plus"></i></button>
+                           <button id="deletePhone" class="btn btn-default"><i class="fas fa-minus"></i></button>
+                           <input id="PhoneValue" type="text" class="form-control text-center" value="1">
+                           <button id="addPhone" class="btn btn-default"><i class="fas fa-plus"></i></button>
                         </div>
-                        <h5>$1219</h5>
+                        <h5>$ <span id="MobilePrice">1219</span> </h5>
                         <img src="images/remove.png" alt="" class="remove-item">
                      </div>
                   </div>
@@ -43,12 +43,12 @@
                      </div>
                      <div class="col-md-5 center-item">
                         <div class="input-group number-spinner">
-                           <button class="btn btn-default"><i class="fas fa-minus"></i></button>
-                           <input type="text" class="form-control text-center" value="1">
-                           <button class="btn btn-default"><i class="fas fa-plus"></i></button>
+                           <button id="deleteCase" class="btn btn-default"><i class="fas fa-minus"></i></button>
+                           <input id="CaseValue" type="text" class="form-control text-center" value="1">
+                           <button id="addCase" class="btn btn-default"><i class="fas fa-plus"></i></button>
 
                         </div>
-                        <h5>$59</h5>
+                        <h5>$ <span id="CasePrice">59</span></h5>
                         <img src="images/remove.png" alt="" class="remove-item">
                      </div>
                   </div>
@@ -64,9 +64,9 @@
                      </div>
 
                      <div class="col-md-4 status">
-                        <h5>$1,278</h5>
+                        <h5>$ <span id="SubTotal">1,278</span></h5>
                         <h5>$0</h5>
-                        <h5>$1,278</h5>
+                        <h5>$ <span id="Total">1,278</span></h5>
                      </div>
                   </div>
                </div>
@@ -77,9 +77,55 @@
          </div>
       </div>
    </section>
+
+   <script>
+ 
+
+      const my_function = (id_1, id_2, id_3, factor1, factor2) => {
+            let plusBtnAddSqzOne = document.getElementById(id_1).value 
+            let plusBtnAddOne = parseFloat(plusBtnAddSqzOne)
+            document.getElementById(id_1).value = plusBtnAddOne + factor2
+            document.getElementById(id_2).innerText = document.getElementById(id_1).value*factor1
+            var SubTotalCurrentOne = document.getElementById(id_2).innerText
+            var SubTotalCurrentValOne = parseFloat(SubTotalCurrentOne)
+            var SubTotalCurrentValTwo = parseFloat(document.getElementById(id_3).innerText)
+            document.getElementById("SubTotal").innerText = SubTotalCurrentValOne + SubTotalCurrentValTwo
+            document.getElementById("Total").innerText = SubTotalCurrentValOne + SubTotalCurrentValTwo
+      }
+
+      const plusBtnOne = document.getElementById("addPhone")
+
+      plusBtnOne.addEventListener("click", function(){
+         my_function("PhoneValue", "MobilePrice", "CasePrice", 1219, 1)
+      });
+
+      const deleteBtnOne = document.getElementById("deletePhone")
+
+      deleteBtnOne.addEventListener("click", function(){
+         my_function("PhoneValue", "MobilePrice", "CasePrice", 1219, -1)
+      });
+
+
+      const plusBtnTwo = document.getElementById("addCase")
+
+      plusBtnTwo.addEventListener("click", function(){
+         my_function("CaseValue", "CasePrice", "MobilePrice", 59, 1)
+      });
+
+      const deleteBtnTwo = document.getElementById("deleteCase")
+
+      deleteBtnTwo.addEventListener("click", function(){
+         my_function("CaseValue", "CasePrice", "MobilePrice", 59, -1)
+      });
+
+
+
+
+   </script>
+
+
+
 </body>
-<script>
-   
-</script>
+
 
 </html>
